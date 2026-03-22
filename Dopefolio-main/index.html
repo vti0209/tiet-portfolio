@@ -1,4 +1,814 @@
 <!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Hồ Văn Tiết | Portfolio - IT Student</title>
+    <meta name="description" content="Portfolio của Hồ Văn Tiết - Sinh viên Công nghệ Thông tin, đam mê phát triển web và thiết kế UI/UX." />
+    
+    <!-- Bootstrap 5 CSS + Icons + Custom Font -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet" />
+    
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Inter', sans-serif;
+        background: #fefaf5;
+        color: #1e1e2a;
+        line-height: 1.5;
+        scroll-behavior: smooth;
+      }
+
+      /* Custom spacing & utilities */
+      .main-container {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      /* Header styles - hiện đại */
+      .header {
+        position: sticky;
+        top: 0;
+        z-index: 1030;
+        background: rgba(255, 250, 245, 0.98);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(230, 92, 30, 0.15);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+        transition: all 0.3s ease;
+      }
+
+      .header-scrolled {
+        background: rgba(255, 250, 245, 0.98);
+        backdrop-filter: blur(20px);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+        border-bottom-color: rgba(230, 92, 30, 0.25);
+      }
+
+      .header__logo-img-cont {
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #ff7e5e, #feb47b);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        box-shadow: 0 8px 20px rgba(255, 126, 94, 0.25);
+        transition: transform 0.3s ease;
+      }
+
+      .header__logo-img-cont:hover {
+        transform: scale(1.05);
+      }
+
+      .header__logo-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .header__logo-sub {
+        font-weight: 800;
+        font-size: 1.6rem;
+        background: linear-gradient(120deg, #e65c1e, #f9a26c);
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+        letter-spacing: -0.5px;
+      }
+
+      .nav-menu-custom {
+        gap: 0.5rem;
+      }
+
+      .nav-link-custom {
+        font-weight: 600;
+        font-size: 1rem;
+        color: #2d2f3b !important;
+        padding: 0.6rem 1.2rem !important;
+        border-radius: 50px;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .nav-link-custom i {
+        font-size: 1.2rem;
+        transition: transform 0.2s ease;
+        color: #e65c1e;
+      }
+
+      .nav-link-custom:hover {
+        background: linear-gradient(135deg, rgba(230, 92, 30, 0.1), rgba(249, 162, 108, 0.1));
+        color: #e65c1e !important;
+        transform: translateY(-2px);
+      }
+
+      .nav-link-custom:hover i {
+        transform: scale(1.1);
+      }
+
+      .nav-link-custom.active {
+        background: linear-gradient(135deg, #e65c1e, #f09842);
+        color: white !important;
+        box-shadow: 0 4px 12px rgba(230, 92, 30, 0.3);
+      }
+
+      .nav-link-custom.active i {
+        color: white !important;
+      }
+
+      .mobile-menu-btn {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, rgba(230, 92, 30, 0.1), rgba(249, 162, 108, 0.1));
+        border: 1px solid rgba(230, 92, 30, 0.2);
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .mobile-menu-btn:hover {
+        background: linear-gradient(135deg, #e65c1e, #f09842);
+        transform: scale(1.05);
+      }
+
+      .mobile-menu-btn:hover i {
+        color: white !important;
+      }
+
+      .mobile-menu-collapse {
+        background: rgba(255, 250, 245, 0.98);
+        backdrop-filter: blur(20px);
+        border-radius: 24px;
+        margin-top: 1rem;
+        padding: 0.5rem;
+        border: 1px solid rgba(230, 92, 30, 0.15);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      }
+
+      .mobile-nav-link {
+        padding: 1rem 1.2rem !important;
+        border-radius: 16px;
+        font-weight: 600;
+        font-size: 1.1rem;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        transition: all 0.3s ease;
+        color: #2d2f3b !important;
+      }
+
+      .mobile-nav-link i {
+        font-size: 1.3rem;
+        width: 28px;
+        color: #e65c1e;
+      }
+
+      .mobile-nav-link:hover {
+        background: linear-gradient(135deg, rgba(230, 92, 30, 0.1), rgba(249, 162, 108, 0.1));
+        transform: translateX(8px);
+        color: #e65c1e !important;
+      }
+
+      /* Hero Section */
+      .home-hero {
+        background: linear-gradient(135deg, #fff5ec 0%, #ffe8dc 100%);
+        min-height: 90vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        padding: 6rem 2rem;
+        text-align: center;
+      }
+
+      .heading-primary {
+        font-size: 3.5rem;
+        font-weight: 800;
+        background: linear-gradient(135deg, #e65c1e, #f09842);
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+        margin-bottom: 1.5rem;
+      }
+
+      .text-primary {
+        font-size: 1.2rem;
+        color: #4a4e6b;
+        max-width: 700px;
+        margin: 0 auto;
+      }
+
+      .btn--bg {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: linear-gradient(95deg, #e65c1e, #f09842);
+        color: white;
+        font-weight: 600;
+        padding: 0.9rem 2rem;
+        border-radius: 60px;
+        text-decoration: none;
+        box-shadow: 0 8px 18px rgba(230, 92, 30, 0.25);
+        transition: all 0.3s ease;
+      }
+
+      .btn--bg:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 22px rgba(230, 92, 30, 0.35);
+        color: white;
+      }
+
+      .home-hero__socials {
+        position: absolute;
+        left: 2rem;
+        bottom: 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .home-hero__social-icon {
+        font-size: 1.8rem;
+        color: #e65c1e;
+        transition: 0.2s;
+      }
+
+      .home-hero__social-icon:hover {
+        transform: translateY(-3px);
+        color: #f09842;
+      }
+
+      .home-hero__mouse-scroll-cont {
+        position: absolute;
+        bottom: 2rem;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .mouse {
+        width: 30px;
+        height: 50px;
+        border: 2px solid #e65c1e;
+        border-radius: 20px;
+        position: relative;
+      }
+
+      .mouse::before {
+        content: '';
+        width: 4px;
+        height: 10px;
+        background: #e65c1e;
+        position: absolute;
+        top: 8px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 2px;
+        animation: scroll 2s infinite;
+      }
+
+      @keyframes scroll {
+        0% { transform: translateX(-50%) translateY(0); opacity: 1; }
+        100% { transform: translateX(-50%) translateY(20px); opacity: 0; }
+      }
+
+      /* About Section */
+      .sec-pad {
+        padding: 5rem 0;
+      }
+
+      .heading-sec {
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+
+      .heading-sec__main {
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: #1e1e2a;
+        display: block;
+        margin-bottom: 1rem;
+      }
+
+      .heading-sec__sub {
+        font-size: 1rem;
+        color: #6c6f85;
+        max-width: 700px;
+        display: block;
+        margin: 0 auto;
+      }
+
+      .about__content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+      }
+
+      .about__content-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        color: #e65c1e;
+      }
+
+      .about__content-details-para {
+        color: #4a4e6b;
+        margin-bottom: 1rem;
+        line-height: 1.7;
+      }
+
+      .about__content-details-para strong {
+        color: #e65c1e;
+      }
+
+      .skills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+      }
+
+      .skills__skill {
+        background: #fef1e8;
+        color: #c25a2a;
+        padding: 0.6rem 1.2rem;
+        border-radius: 40px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        transition: 0.2s;
+      }
+
+      .skills__skill:hover {
+        background: #e65c1e;
+        color: white;
+        transform: translateY(-2px);
+      }
+
+      .btn--med {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #1e1e2a;
+        color: white;
+        padding: 0.8rem 1.8rem;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: 0.2s;
+        margin-top: 1rem;
+      }
+
+      .btn--med:hover {
+        background: #e65c1e;
+        transform: translateY(-2px);
+        color: white;
+      }
+
+      /* Projects Section */
+      .projects__row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        background: white;
+        border-radius: 28px;
+        overflow: hidden;
+        box-shadow: 0 8px 28px rgba(0,0,0,0.05);
+        margin-bottom: 3rem;
+        border: 1px solid rgba(0,0,0,0.05);
+        transition: transform 0.3s;
+      }
+
+      .projects__row:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 35px rgba(0,0,0,0.1);
+      }
+
+      .projects__row-img-cont {
+        overflow: hidden;
+      }
+
+      .projects__row-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s;
+      }
+
+      .projects__row:hover .projects__row-img {
+        transform: scale(1.05);
+      }
+
+      .projects__row-content {
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .projects__row-content-title {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        color: #1e1e2a;
+      }
+
+      .projects__row-content-desc {
+        color: #6c6f85;
+        margin-bottom: 1.5rem;
+        line-height: 1.6;
+      }
+
+      /* Contact Section - Không có form, chỉ thông tin liên hệ */
+      .contact {
+        background: linear-gradient(135deg, #1e1e2a 0%, #2d2f3b 100%);
+        color: white;
+      }
+
+      .heading-sec__main--lt {
+        color: white;
+      }
+
+      .heading-sec__sub--lt {
+        color: #bcbcc4;
+      }
+
+      .contact-info-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      .contact-card {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 24px;
+        padding: 2rem;
+        text-align: center;
+        transition: all 0.3s;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .contact-card:hover {
+        transform: translateY(-5px);
+        background: rgba(255, 255, 255, 0.15);
+      }
+
+      .contact-card i {
+        font-size: 2.5rem;
+        color: #f09842;
+        margin-bottom: 1rem;
+      }
+
+      .contact-card h4 {
+        font-size: 1.3rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+      }
+
+      .contact-card p {
+        color: #bcbcc4;
+        margin-bottom: 0;
+      }
+
+      .contact-card a {
+        color: #f09842;
+        text-decoration: none;
+      }
+
+      .contact-card a:hover {
+        text-decoration: underline;
+      }
+
+      /* Footer */
+      .main-footer {
+        background: #111217;
+        color: #e4e4e7;
+        padding: 3rem 0 1.5rem;
+        border-top: 1px solid #2c2c36;
+      }
+
+      .footer-icon {
+        font-size: 1.8rem;
+        color: #bcbcc4;
+        transition: 0.2s;
+        margin-right: 1rem;
+      }
+
+      .footer-icon:hover {
+        color: #f0986a;
+        transform: translateY(-3px);
+      }
+
+      .footer-link-light {
+        color: #f0986a;
+        text-decoration: none;
+        font-weight: 500;
+      }
+
+      .footer-link-light:hover {
+        text-decoration: underline;
+      }
+
+      @media (max-width: 768px) {
+        .about__content {
+          grid-template-columns: 1fr;
+        }
+        .projects__row {
+          grid-template-columns: 1fr;
+        }
+        .heading-primary {
+          font-size: 2.2rem;
+        }
+        .main-container {
+          padding: 0 1.2rem;
+        }
+        .home-hero__socials {
+          left: 1rem;
+          bottom: 1rem;
+        }
+        .home-hero__social-icon {
+          font-size: 1.4rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+
+    <!-- Header -->
+    <header class="header" id="mainHeader">
+      <div class="container-xl py-3 py-md-2">
+        <div class="d-flex align-items-center justify-content-between">
+          <a href="./index.html" class="text-decoration-none d-flex align-items-center gap-3">
+            <div class="header__logo-img-cont">
+              <img src="./assets/png/vantiet.png" alt="Hồ Văn Tiết Logo" class="header__logo-img" onerror="this.src='https://placehold.co/52x52?text=VT'"/>
+            </div>
+            <span class="header__logo-sub">VanwTiet</span>
+          </a>
+
+          <nav class="d-none d-lg-block">
+            <ul class="nav nav-menu-custom">
+              <li class="nav-item"><a href="#home" class="nav-link nav-link-custom"><i class="bi bi-house-door-fill"></i><span>Trang chủ</span></a></li>
+              <li class="nav-item"><a href="#about" class="nav-link nav-link-custom"><i class="bi bi-person-circle"></i><span>Hồ Văn Tiết</span></a></li>
+              <li class="nav-item"><a href="#projects" class="nav-link nav-link-custom"><i class="bi bi-grid-3x3-gap-fill"></i><span>Dự án</span></a></li>
+              <li class="nav-item"><a href="#contact" class="nav-link nav-link-custom"><i class="bi bi-envelope-paper-fill"></i><span>Liên hệ</span></a></li>
+            </ul>
+          </nav>
+
+          <button class="btn d-lg-none mobile-menu-btn" type="button" data-bs-toggle="collapse" data-bs-target="#mobileMenuModern" aria-expanded="false">
+            <i class="bi bi-list" style="font-size: 1.8rem; color: #e65c1e;"></i>
+          </button>
+        </div>
+
+        <div class="collapse mt-3" id="mobileMenuModern">
+          <div class="mobile-menu-collapse">
+            <ul class="nav flex-column">
+              <li class="nav-item"><a href="#home" class="nav-link mobile-nav-link"><i class="bi bi-house-door-fill"></i><span>Trang chủ</span></a></li>
+              <li class="nav-item"><a href="#about" class="nav-link mobile-nav-link"><i class="bi bi-person-circle"></i><span>Hồ Văn Tiết</span></a></li>
+              <li class="nav-item"><a href="#projects" class="nav-link mobile-nav-link"><i class="bi bi-grid-3x3-gap-fill"></i><span>Dự án</span></a></li>
+              <li class="nav-item"><a href="#contact" class="nav-link mobile-nav-link"><i class="bi bi-envelope-paper-fill"></i><span>Liên hệ</span></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="home-hero">
+      <div class="home-hero__content">
+        <h3 class="heading-primary">Chào mừng bạn đến với!!</h3>
+        <div class="home-hero__info">
+          <p class="text-primary">Nơi chia sẻ những dự án, kinh nghiệm học tập và hành trình phát triển trong lĩnh vực công nghệ của Tôi.</p>
+        </div>
+        <div class="home-hero__cta mt-4">
+          <a href="#projects" class="btn--bg"><i class="bi bi-arrow-right-circle"></i> Dự án</a>
+        </div>
+      </div>
+      <div class="home-hero__socials">
+        <a href="https://www.linkedin.com/in/ho-van-tiet-544132343/" target="_blank" class="home-hero__social-icon-link"><i class="bi bi-linkedin home-hero__social-icon"></i></a>
+        <a href="https://github.com/vti0209" target="_blank" class="home-hero__social-icon-link"><i class="bi bi-github home-hero__social-icon"></i></a>
+        <a href="#" class="home-hero__social-icon-link"><i class="bi bi-twitter-x home-hero__social-icon"></i></a>
+        <a href="#" class="home-hero__social-icon-link"><i class="bi bi-youtube home-hero__social-icon"></i></a>
+        <a href="#" class="home-hero__social-icon-link"><i class="bi bi-instagram home-hero__social-icon"></i></a>
+      </div>
+      <div class="home-hero__mouse-scroll-cont">
+        <div class="mouse"></div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about sec-pad">
+      <div class="main-container">
+        <h2 class="heading heading-sec heading-sec__mb-med">
+          <span class="heading-sec__main">Hồ Văn Tiết</span>
+          <span class="heading-sec__sub">Dưới đây là một số thông tin về Tôi, bao gồm kỹ năng, sở thích và những điều Tôi đang học tập trong lĩnh vực phát triển web.</span>
+        </h2>
+        <div class="text-center mb-5">
+  <img 
+    src="./assets/png/vantiet.png" 
+    alt="Hồ Văn Tiết" 
+    style="width: 200px; height: 200px; object-fit: cover; border: 4px solid #0a58ca; border-radius: 16px; box-shadow: 0 10px 30px rgba(10, 88, 202, 0.3); transition: transform 0.3s ease;"
+    onerror="this.src='https://placehold.co/200x200?text=VT'"
+    onmouseover="this.style.transform='scale(1.05)'"
+    onmouseout="this.style.transform='scale(1)'"
+  />
+</div>
+        <div class="about__content">
+          <div class="about__content-main">
+            <h3 class="about__content-title">Hãy cùng tìm hiểu về Tôi!</h3>
+            <div class="about__content-details">
+              <p class="about__content-details-para">Tôi là sinh viên năm hai ngành <strong>Công nghệ Thông tin</strong>.</p>
+              <p class="about__content-details-para">Đang học tại: <br><strong>- Trường Cao đẳng Đà Nẵng (DNC)</strong><br> <strong>- Passerelles Numériques Vietnam (PNV)</strong></p>
+              <p class="about__content-details-para">Định hướng phát triển: <br> <strong>- Web Development</strong><br> <strong>- Frontend Development</strong></p>
+              <p class="about__content-details-para">Yêu thích xây dựng các trang web đẹp, thân thiện với người dùng và tối ưu hiệu suất.</p>
+              <p class="about__content-details-para">Luôn sẵn sàng học hỏi và thử nghiệm <strong>các công nghệ mới</strong> để nâng cao kỹ năng lập trình.</p>
+              <p class="about__content-details-para">Nếu bạn muốn trao đổi hoặc hợp tác, hãy <strong>liên hệ</strong> với tôi nhé!</p>
+            </div>
+            <a href="#contact" class="btn--med"><i class="bi bi-chat-dots-fill"></i> Liên hệ</a>
+          </div>
+          <div class="about__content-skills">
+            <h3 class="about__content-title">Kỹ năng công nghệ</h3>
+            <div class="skills">
+              <div class="skills__skill">HTML</div>
+              <div class="skills__skill">CSS</div>
+              <div class="skills__skill">JavaScript</div>
+              <div class="skills__skill">Bootstrap5</div>
+              <div class="skills__skill">GIT</div>
+              <div class="skills__skill">Figma</div>
+              <div class="skills__skill">Wordpress</div>
+              <div class="skills__skill">Microsoft Office</div>
+              <div class="skills__skill">Android Studio</div>
+              <div class="skills__skill">PHP</div>
+              <div class="skills__skill">Python</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects sec-pad">
+      <div class="main-container">
+        <h2 class="heading heading-sec heading-sec__mb-bg">
+          <span class="heading-sec__main">Dự án</span>
+          <span class="heading-sec__sub">Dưới đây là một số dự án mà Tôi đã thực hiện trong quá trình học tập và tự học về phát triển website và di động.</span>
+        </h2>
+        <div class="projects__content">
+          <div class="projects__row">
+            <div class="projects__row-img-cont">
+              <img src="./assets/jpeg/project-mockup-example.jpeg" alt="DigiFood App" class="projects__row-img" loading="lazy" onerror="this.src='https://placehold.co/600x400?text=DigiFood'"/>
+            </div>
+            <div class="projects__row-content">
+              <h3 class="projects__row-content-title">DigiFood (Food ordering app)</h3>
+              <p class="projects__row-content-desc">Đây là một dự án thiết kế web bán đồ ăn bằng Figma, là dự án thiết kế theo ý tưởng đồ án cuối môn học. Được trình bày bằng mobile app và luồng đi rõ ràng, dễ theo dõi. Sản phẩm có kết quả tương tự các app bán đồ ăn, cho phép xem, và đặt mua món ăn. Chi tiết xem thêm "Xem chi tiết".</p>
+              <a href="./project-1.html" class="btn--med" target="_blank"><i class="bi bi-eye-fill"></i> Xem Chi Tiết</a>
+            </div>
+          </div>
+          <div class="projects__row">
+            <div class="projects__row-img-cont">
+              <img src="./assets/jpeg/project-mockup-example.jpeg" alt="Project 2" class="projects__row-img" loading="lazy" onerror="this.src='https://placehold.co/600x400?text=Project+2'"/>
+            </div>
+            <div class="projects__row-content">
+              <h3 class="projects__row-content-title">Project 2</h3>
+              <p class="projects__row-content-desc">Đây là một đoạn văn mô tả về dự án thứ hai. Nó có thể bao gồm thông tin về mục tiêu của dự án, công nghệ được sử dụng và những thách thức đã gặp phải trong quá trình phát triển.</p>
+              <a href="./project-2.html" class="btn--med" target="_blank"><i class="bi bi-eye-fill"></i> Xem Chi Tiết</a>
+            </div>
+          </div>
+          <div class="projects__row">
+            <div class="projects__row-img-cont">
+              <img src="./assets/jpeg/project-mockup-example.jpeg" alt="Project 3" class="projects__row-img" loading="lazy" onerror="this.src='https://placehold.co/600x400?text=Project+3'"/>
+            </div>
+            <div class="projects__row-content">
+              <h3 class="projects__row-content-title">Project 3</h3>
+              <p class="projects__row-content-desc">Đây là một dự án Nghiên cứu về phát triển web và di động mà Tôi đã thực hiện trong quá trình học tập. Dự án này tập trung vào việc xây dựng một trang web tương tác và một ứng dụng di động đơn giản để minh họa các kỹ năng lập trình và thiết kế mà Tôi đã học được.</p>
+              <a href="./project-3.html" class="btn--med" target="_blank"><i class="bi bi-eye-fill"></i> Xem Chi Tiết</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section - Không có form, chỉ thông tin liên hệ -->
+    <section id="contact" class="contact sec-pad">
+      <div class="main-container">
+        <h2 class="heading heading-sec heading-sec__mb-med">
+          <span class="heading-sec__main heading-sec__main--lt">Liên hệ</span>
+          <span class="heading-sec__sub heading-sec__sub--lt">Hãy kết nối với Tôi qua các kênh dưới đây. Tôi rất mong được trao đổi và hợp tác với bạn!</span>
+        </h2>
+        <div class="contact-info-grid">
+          <div class="contact-card">
+            <i class="bi bi-envelope-fill"></i>
+            <h4>Email</h4>
+            <p><a href="mailto:tiet.ho27@student.passerellesnumeriques.org">tiet.ho27@student.passerellesnumeriques.org</a></p>
+          </div>
+          <div class="contact-card">
+            <i class="bi bi-telephone-fill"></i>
+            <h4>Điện thoại</h4>
+            <p><a href="tel:+84373532152">+84 373 532 152</a></p>
+          </div>
+          <div class="contact-card">
+            <i class="bi bi-geo-alt-fill"></i>
+            <h4>Địa chỉ</h4>
+            <p>Đà Nẵng, Việt Nam</p>
+          </div>
+          <div class="contact-card">
+            <i class="bi bi-linkedin"></i>
+            <h4>LinkedIn</h4>
+            <p><a href="https://www.linkedin.com/in/ho-van-tiet-544132343/" target="_blank">Ho Van Tiet</a></p>
+          </div>
+          <div class="contact-card">
+            <i class="bi bi-github"></i>
+            <h4>GitHub</h4>
+            <p><a href="https://github.com/vti0209" target="_blank">vti0209</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+      <div class="main-container">
+        <div class="row gy-4">
+          <div class="col-md-6">
+            <h5 class="fw-semibold mb-3"><i class="bi bi-globe2 me-2"></i> Kết nối</h5>
+            <div class="d-flex gap-3">
+              <a href="https://www.linkedin.com/in/ho-van-tiet-544132343/" target="_blank" class="footer-icon"><i class="bi bi-linkedin"></i></a>
+              <a href="https://github.com/vti0209" target="_blank" class="footer-icon"><i class="bi bi-github"></i></a>
+              <a href="#" target="_blank" class="footer-icon"><i class="bi bi-twitter-x"></i></a>
+              <a href="#" target="_blank" class="footer-icon"><i class="bi bi-youtube"></i></a>
+              <a href="#" target="_blank" class="footer-icon"><i class="bi bi-instagram"></i></a>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <h5 class="fw-semibold mb-3">Hồ Văn Tiết</h5>
+            <p class="small text-secondary mb-1"><i class="bi bi-geo-alt-fill me-2"></i> Đà Nẵng, Việt Nam</p>
+            <p class="small text-secondary mb-1"><i class="bi bi-telephone-fill me-2"></i> +84 373 532 152</p>
+            <p class="small text-secondary mb-0"><i class="bi bi-envelope-fill me-2"></i> tiet.ho27@student.passerellesnumeriques.org</p>
+          </div>
+        </div>
+        <hr class="my-4 bg-secondary" style="opacity: 0.2;">
+        <div class="text-center small text-secondary">
+          <p class="mb-2">Bản quyền © 2026 <strong class="text-white-50">VanwTiet</strong> | Information Technology Student<br>Built with <i class="bi bi-suit-heart-fill text-danger"></i> using Bootstrap 5, HTML, CSS & JavaScript — Giao diện hiện đại, tối ưu UX</p>
+          <p><a href="https://github.com/vti0209" class="footer-link-light" target="_blank"><i class="bi bi-github me-1"></i>GitHub</a> | <a href="https://www.linkedin.com/in/ho-van-tiet-544132343/" class="footer-link-light" target="_blank"><i class="bi bi-linkedin me-1"></i>LinkedIn</a> | <a href="mailto:tiet.ho27@student.passerellesnumeriques.org" class="footer-link-light"><i class="bi bi-envelope me-1"></i>Email</a></p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      // Header scroll effect
+      window.addEventListener('scroll', function() {
+        const header = document.getElementById('mainHeader');
+        if (window.scrollY > 50) {
+          header.classList.add('header-scrolled');
+        } else {
+          header.classList.remove('header-scrolled');
+        }
+      });
+
+      // Close mobile menu when clicking a link
+      const mobileMenu = document.getElementById('mobileMenuModern');
+      const mobileLinks = document.querySelectorAll('#mobileMenuModern .mobile-nav-link');
+      mobileLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          const bsCollapse = bootstrap.Collapse.getInstance(mobileMenu);
+          if (bsCollapse) bsCollapse.hide();
+        });
+      });
+
+      // Smooth scroll
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          const hash = this.getAttribute('href');
+          if (hash !== "#" && hash !== "" && hash !== "#!" && hash.startsWith('#') && hash.length > 1) {
+            const target = document.querySelector(hash);
+            if (target) {
+              e.preventDefault();
+              target.scrollIntoView({ behavior: 'smooth' });
+              history.pushState(null, null, hash);
+            }
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
+<!-- <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -215,15 +1025,19 @@ Dưới đây là một số dự án mà Tôi đã thực hiện trong quá tr�
               />
             </div>
             <div class="projects__row-content">
-              <h3 class="projects__row-content-title">Project 1</h3>
+              <h3 class="projects__row-content-title">DigiFood (Food ordering app)</h3>
               <p class="projects__row-content-desc">
-đây là một dự án mẫu để giới thiệu về cách trình bày các dự án của Tôi trên portfolio. Dự án này có thể là một trang web, ứng dụng di động hoặc bất kỳ sản phẩm kỹ thuật số nào mà Tôi đã tạo ra trong quá trình học tập và phát triển kỹ năng lập trình của mình. Mục tiêu của dự án này là để thể hiện khả năng thiết kế, phát triển và triển khai các sản phẩm kỹ thuật số chất lượng cao.
+                    Đây là một dự án thiết kế web bán đồ ăn bằng figma,
+                    là dự án thiết kế theo ý tưởng đồ án cuối môn học.
+                    Được trình bày bằng mobile app và luồng đi rõ ràng,
+                    dễ theo dõi. Sản phẩm có kết quả tương tự các app bán đồ ăn,
+                    cho phép xem, và đặt mua món ăn. Chi tiết xem thêm "Xem chi tiết".
               </p>
               <a
                 href="./project-1.html"
                 class="btn btn--med btn--theme dynamicBgClr"
                 target="_blank"
-                >Nghiên cứu</a
+                >Xem Chi Tiết</a
               >
             </div>
           </div>
@@ -245,7 +1059,7 @@ Dưới đây là một số dự án mà Tôi đã thực hiện trong quá tr�
                 href="./project-2.html"
                 class="btn btn--med btn--theme dynamicBgClr"
                 target="_blank"
-                >Nghiên cứu</a
+                >Xem Chi Tiết</a
               >
             </div>
           </div>
@@ -261,13 +1075,13 @@ Dưới đây là một số dự án mà Tôi đã thực hiện trong quá tr�
             <div class="projects__row-content">
               <h3 class="projects__row-content-title">Project 3</h3>
               <p class="projects__row-content-desc">
-đây là một dự án nghiên cứu về phát triển web và di động mà Tôi đã thực hiện trong quá trình học tập. Dự án này tập trung vào việc xây dựng một trang web tương tác và một ứng dụng di động đơn giản để minh họa các kỹ năng lập trình và thiết kế mà Tôi đã học được.
+đây là một dự án Nghiên cứu về phát triển web và di động mà Tôi đã thực hiện trong quá trình học tập. Dự án này tập trung vào việc xây dựng một trang web tương tác và một ứng dụng di động đơn giản để minh họa các kỹ năng lập trình và thiết kế mà Tôi đã học được.
               </p>
               <a
                 href="./project-3.html"
                 class="btn btn--med btn--theme dynamicBgClr"
                 target="_blank"
-                >Nghiên cứu</a
+                >Xem Chi Tiết</a
               >
             </div>
           </div>
@@ -401,4 +1215,4 @@ Nếu cần liên hệ với Tôi, hãy điền vào mẫu bên dưới hoặc s
 
     <script src="./index.js"></script>
   </body>
-</html>
+</html> -->

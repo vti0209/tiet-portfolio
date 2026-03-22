@@ -1,230 +1,539 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Case Study of Project 1</title>
-    <meta name="description" content="Case study page of Project" />
-
-    <link rel="stylesheet" href="css/style.css" />
-
+    <title>DigiFood | UI/UX Case Study by Hồ Văn Tiết</title>
+    <meta name="description" content="Dự án thiết kế ứng dụng đặt đồ ăn DigiFood - Tối ưu trải nghiệm người dùng, quy trình đặt món nhanh chóng và hiện đại trên Figma." />
+    
+    <!-- Bootstrap 5 CSS + Icons + Custom Font -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700;900&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet" />
+    
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Inter', sans-serif;
+        background: #fefaf5;
+        color: #1e1e2a;
+        line-height: 1.5;
+        scroll-behavior: smooth;
+      }
+
+      /* Custom spacing & utilities */
+      .main-container {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      /* Header styles - glassmorph */
+      .header {
+      position: sticky;
+      top: 0;
+      z-index: 1030;
+      background: rgba(255, 250, 245, 0.98);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(230, 92, 30, 0.15);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+      transition: all 0.3s ease;
+    }
+
+    .header-scrolled {
+      background: rgba(255, 250, 245, 0.98);
+      backdrop-filter: blur(20px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+      border-bottom-color: rgba(230, 92, 30, 0.25);
+    }
+
+    .header__logo-img-cont {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ff7e5e, #feb47b);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(255, 126, 94, 0.25);
+      transition: transform 0.3s ease;
+    }
+
+    .header__logo-img-cont:hover {
+      transform: scale(1.05);
+    }
+
+    .header__logo-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .header__logo-sub {
+      font-weight: 800;
+      font-size: 1.6rem;
+      background: linear-gradient(120deg, #e65c1e, #f9a26c);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      letter-spacing: -0.5px;
+      transition: all 0.3s;
+    }
+
+      /* Hero section */
+      .project-cs-hero {
+        background: linear-gradient(105deg, #fff3e8 0%, #ffe6d5 100%);
+        padding: 5rem 2rem 4rem;
+        text-align: center;
+        border-bottom: 1px solid rgba(0,0,0,0.03);
+      }
+
+      .heading-primary {
+        font-size: 3.5rem;
+        font-weight: 800;
+        background: linear-gradient(135deg, #e65c1e, #f09842);
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+        margin-bottom: 1rem;
+        letter-spacing: -0.02em;
+      }
+
+      .btn-gradient {
+        display: inline-block;
+        background: linear-gradient(95deg, #e65c1e, #f09842);
+        color: white;
+        font-weight: 600;
+        padding: 0.9rem 2rem;
+        border-radius: 60px;
+        text-decoration: none;
+        box-shadow: 0 8px 18px rgba(230, 92, 30, 0.25);
+        transition: all 0.3s ease;
+        border: none;
+        font-size: 1rem;
+      }
+
+      .btn-gradient:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 22px rgba(230, 92, 30, 0.35);
+        background: linear-gradient(95deg, #d45317, #e9893a);
+        color: white;
+      }
+
+      /* Project card style */
+      .project-details {
+        padding: 4rem 0 5rem;
+      }
+
+      .project-showcase {
+        border-radius: 32px;
+        overflow: hidden;
+        box-shadow: 0 25px 45px -12px rgba(0,0,0,0.25);
+        transition: transform 0.3s ease;
+        margin-bottom: 3rem;
+      }
+
+      .project-showcase:hover {
+        transform: scale(1.01);
+      }
+
+      .info-card {
+        background: white;
+        border-radius: 28px;
+        padding: 1.8rem 2rem;
+        box-shadow: 0 8px 28px rgba(0,0,0,0.03);
+        border: 1px solid rgba(0,0,0,0.05);
+        height: 100%;
+        transition: all 0.2s;
+      }
+
+      .section-title {
+        font-size: 1.7rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        letter-spacing: -0.3px;
+        position: relative;
+        display: inline-block;
+      }
+
+      .section-title:after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        width: 48px;
+        height: 4px;
+        background: linear-gradient(90deg, #e65c1e, #fec084);
+        border-radius: 4px;
+      }
+
+      .feature-list {
+        list-style: none;
+        padding-left: 0;
+      }
+
+      .feature-list li {
+        margin-bottom: 0.75rem;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        color: #3a3c4a;
+        font-weight: 450;
+      }
+
+      .feature-list li i {
+        color: #e65c1e;
+        font-size: 1.2rem;
+        width: 28px;
+      }
+
+      .skill-tag {
+        background: #fef1e8;
+        color: #c25a2a;
+        padding: 0.5rem 1.1rem;
+        border-radius: 40px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        display: inline-block;
+        transition: 0.1s;
+      }
+
+      .btn-outline-dark-custom {
+        background: #1e1e2a;
+        color: white;
+        border-radius: 50px;
+        padding: 0.9rem 2.2rem;
+        font-weight: 600;
+        transition: 0.2s;
+        border: 1px solid rgba(255,255,255,0.1);
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .btn-outline-dark-custom:hover {
+        background: #e65c1e;
+        transform: scale(1.02);
+        box-shadow: 0 8px 20px rgba(230,92,30,0.3);
+        color: white;
+      }
+
+      /* Footer modern */
+      .main-footer {
+        background: #111217;
+        color: #e4e4e7;
+        padding: 3rem 0 1.5rem;
+        border-top: 1px solid #2c2c36;
+      }
+
+      .footer-icon {
+        font-size: 1.8rem;
+        color: #bcbcc4;
+        transition: 0.2s;
+        margin-right: 1rem;
+      }
+
+      .footer-icon:hover {
+        color: #f0986a;
+        transform: translateY(-3px);
+      }
+
+      .footer-link-light {
+        color: #f0986a;
+        text-decoration: none;
+        font-weight: 500;
+      }
+
+      .footer-link-light:hover {
+        text-decoration: underline;
+      }
+
+      @media (max-width: 768px) {
+        .heading-primary {
+          font-size: 2.4rem;
+        }
+        .main-container {
+          padding: 0 1.2rem;
+        }
+        .info-card {
+          padding: 1.4rem;
+        }
+        .section-title {
+          font-size: 1.5rem;
+        }
+      }
+    </style>
   </head>
   <body>
-    <header class="header">
-      <div class="header__content">
-        <div class="header__logo-container">
+    <header class="header" id="mainHeader">
+    <div class="container-xl py-3 py-md-2">
+      <div class="d-flex align-items-center justify-content-between">
+        <!-- Logo Area -->
+        <a href="./index.html" class="text-decoration-none d-flex align-items-center gap-3">
           <div class="header__logo-img-cont">
-            <img
-              src="./assets/png/john-doe.png"
-              alt="Ram Maheshwari Logo Image"
-              class="header__logo-img"
-            />
+            <img src="./assets/png/vantiet.png" alt="Hồ Văn Tiết Logo" class="header__logo-img" onerror="this.src='https://placehold.co/52x52?text=VT'"/>
           </div>
-          <span class="header__logo-sub">John Doe</span>
-        </div>
-        <div class="header__main">
-          <ul class="header__links">
-            <li class="header__link-wrapper">
-              <a href="./index.html" class="header__link"> Home </a>
-            </li>
-            <li class="header__link-wrapper">
-              <a href="./index.html#about" class="header__link">About </a>
-            </li>
-            <li class="header__link-wrapper">
-              <a href="./index.html#projects" class="header__link">
-                Projects
+          <span class="header__logo-sub">VanwTiet</span>
+        </a>
+
+        <!-- Desktop Menu - Đẹp với icon -->
+        <nav class="d-none d-lg-block">
+          <ul class="nav nav-menu-custom">
+            <li class="nav-item">
+              <a href="./index.html" class="nav-link nav-link-custom" id="nav-home">
+                <i class="bi bi-house-door-fill"></i>
+                <span>Trang chủ</span>
               </a>
             </li>
-            <li class="header__link-wrapper">
-              <a href="./index.html#contact" class="header__link"> Contact </a>
+            <li class="nav-item">
+              <a href="./index.html#about" class="nav-link nav-link-custom">
+                <i class="bi bi-person-circle"></i>
+                <span>Hồ Văn Tiết</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="./index.html#projects" class="nav-link nav-link-custom">
+                <i class="bi bi-grid-3x3-gap-fill"></i>
+                <span>Dự án</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="./index.html#contact" class="nav-link nav-link-custom">
+                <i class="bi bi-envelope-paper-fill"></i>
+                <span>Liên hệ</span>
+              </a>
             </li>
           </ul>
-          <div class="header__main-ham-menu-cont">
-            <img
-              src="./assets/svg/ham-menu.svg"
-              alt="hamburger menu"
-              class="header__main-ham-menu"
-            />
-            <img
-              src="./assets/svg/ham-menu-close.svg"
-              alt="hamburger menu close"
-              class="header__main-ham-menu-close d-none"
-            />
-          </div>
-        </div>
+        </nav>
+
+        <!-- Mobile Menu Button - Đẹp, bo tròn -->
+        <button class="btn d-lg-none mobile-menu-btn" type="button" data-bs-toggle="collapse" data-bs-target="#mobileMenuModern" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="bi bi-list" style="font-size: 1.8rem; color: #e65c1e; transition: all 0.3s;"></i>
+        </button>
       </div>
-      <div class="header__sm-menu">
-        <div class="header__sm-menu-content">
-          <ul class="header__sm-menu-links">
-            <li class="header__sm-menu-link">
-              <a href="./index.html"> Home </a>
-            </li>
 
-            <li class="header__sm-menu-link">
-              <a href="./index.html#about"> About </a>
+      <!-- Mobile Collapse Menu - Thiết kế đẹp, có icon và animation -->
+      <div class="collapse mt-3" id="mobileMenuModern">
+        <div class="mobile-menu-collapse">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a href="./index.html" class="nav-link mobile-nav-link" id="mobile-nav-home">
+                <i class="bi bi-house-door-fill"></i>
+                <span>Trang chủ</span>
+              </a>
             </li>
-
-            <li class="header__sm-menu-link">
-              <a href="./index.html#projects"> Projects </a>
+            <li class="nav-item">
+              <a href="./index.html#about" class="nav-link mobile-nav-link">
+                <i class="bi bi-person-circle"></i>
+                <span>Hồ Văn Tiết</span>
+              </a>
             </li>
-
-            <li class="header__sm-menu-link">
-              <a href="./index.html#contact"> Contact </a>
+            <li class="nav-item">
+              <a href="./index.html#projects" class="nav-link mobile-nav-link">
+                <i class="bi bi-grid-3x3-gap-fill"></i>
+                <span>Dự án</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="./index.html#contact" class="nav-link mobile-nav-link">
+                <i class="bi bi-envelope-paper-fill"></i>
+                <span>Liên hệ</span>
+              </a>
             </li>
           </ul>
         </div>
       </div>
-    </header>
-    <section class="project-cs-hero">
-      <div class="project-cs-hero__content">
-        <h1 class="heading-primary">Project 1</h1>
-        <div class="project-cs-hero__info">
-          <p class="text-primary">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos
-            in numquam incidunt earum quaerat cum fuga, atque similique natus
-            nobis sit.
-          </p>
-        </div>
-        <div class="project-cs-hero__cta">
-          <a href="#" class="btn btn--bg" target="_blank">Live Link</a>
+    </div>
+  </header>
+    <!-- Hero Section -->
+    <div class="project-cs-hero">
+      <div class="container">
+        <h1 class="heading-primary">DigiFood</h1>
+        <div class="mt-4">
+          <a href="https://www.figma.com/design/fNqHlXTE24477HqQKE99eH/Food-ordering-app--Ho-Van-Tiet-?m=auto&t=EDQkh37XDP1oo2ZO-1" class="btn-gradient" target="_blank" rel="noopener">
+            <i class="bi bi-box-arrow-up-right me-2"></i> Live Demo (Figma)
+          </a>
         </div>
       </div>
-    </section>
+    </div>
+
+    <!-- Project Details Section -->
     <section class="project-details">
       <div class="main-container">
-        <div class="project-details__content">
-          <div class="project-details__showcase-img-cont">
-            <img
-              src="./assets/jpeg/project-mockup-example.jpeg"
-              alt="Project Image"
-              class="project-details__showcase-img"
-            />
-          </div>
-          <div class="project-details__content-main">
-            <div class="project-details__desc">
-              <h3 class="project-details__content-title">Project Overview</h3>
-              <p class="project-details__desc-para">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque
-                alias tenetur minus quaerat aliquid, aut provident blanditiis,
-                deleniti aspernatur ipsam eaque veniam voluptatem corporis vitae
-                mollitia laborum corrupti ullam rem. Lorem ipsum dolor sit amet
-                consectetur adipisicing elit. Neque alias tenetur minus quaerat
-                aliquid, aut provident blanditiis, deleniti aspernatur ipsam
-                eaque veniam voluptatem corporis vitae mollitia laborum corrupti
-                ullam rem?
-              </p>
-              <p class="project-details__desc-para">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque
-                alias tenetur minus quaerat aliquid, aut provident blanditiis,
-                deleniti aspernatur ipsam eaque veniam voluptatem corporis vitae
-                mollitia laborum corrupti ullam rem?
-              </p>
+        <!-- Hình ảnh showcase -->
+        <div class="project-showcase">
+          <img src="./assets/jpeg/project-mockup-example.jpeg" alt="DigiFood App Mockup - UI/UX Design" class="img-fluid w-100" onerror="this.src='https://placehold.co/1200x800?text=DigiFood+Preview'"/>
+        </div>
+
+        <!-- Grid Layout thông tin (căn chỉnh chuẩn Bootstrap) -->
+        <div class="row g-4">
+          <!-- Tổng quan -->
+          <div class="col-lg-6">
+            <div class="info-card h-100">
+              <h3 class="section-title"><i class="bi bi-stars me-2" style="color:#e65c1e;"></i> Tổng quan dự án</h3>
+              <p class="text-secondary"><strong>DigiFood</strong> là dự án thiết kế ứng dụng đặt đồ ăn trên nền tảng mobile, được xây dựng bằng Figma. Dự án tập trung tối ưu trải nghiệm người dùng từ lúc mở ứng dụng cho đến khi hoàn tất đơn hàng.</p>
+              <p class="text-secondary mb-0">Mục tiêu chính là tạo ra một quy trình đặt món nhanh, rõ ràng và dễ sử dụng, giúp người dùng tiết kiệm thời gian và thao tác. Giao diện mang phong cách hiện đại, trực quan và tối ưu tương tác.</p>
             </div>
-            <div class="project-details__tools-used">
-              <h3 class="project-details__content-title">Tools Used</h3>
-              <div class="skills">
-                <div class="skills__skill">HTML</div>
-                <div class="skills__skill">CSS</div>
-                <div class="skills__skill">JavaScript</div>
-                <div class="skills__skill">React</div>
-                <div class="skills__skill">SASS</div>
-                <div class="skills__skill">GIT</div>
-                <div class="skills__skill">Shopify</div>
-                <div class="skills__skill">Wordpress</div>
-                <div class="skills__skill">Google ADS</div>
-                <div class="skills__skill">Facebook Ads</div>
-                <div class="skills__skill">Android</div>
-                <div class="skills__skill">IOS</div>
+          </div>
+
+          <!-- Đối tượng người dùng -->
+          <div class="col-lg-6">
+            <div class="info-card h-100">
+              <h3 class="section-title"><i class="bi bi-people me-2" style="color:#e65c1e;"></i> Đối tượng người dùng</h3>
+              <ul class="feature-list">
+                <li><i class="bi bi-mortarboard-fill"></i> Sinh viên và người trẻ (18–25 tuổi) yêu thích công nghệ</li>
+                <li><i class="bi bi-lightning-charge-fill"></i> Người bận rộn, cần đặt đồ ăn nhanh chóng, tiện lợi</li>
+                <li><i class="bi bi-emoji-smile"></i> Người ưu tiên trải nghiệm đơn giản, dễ hiểu và tối giản</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Chức năng chính -->
+          <div class="col-md-6">
+            <div class="info-card h-100">
+              <h3 class="section-title"><i class="bi bi-gear-wide-connected me-2"></i> Chức năng chính</h3>
+              <ul class="feature-list">
+                <li><i class="bi bi-key-fill"></i> Đăng nhập & đăng ký tài khoản nhanh chóng</li>
+                <li><i class="bi bi-house-door-fill"></i> Trang chủ hiển thị nhà hàng & món ăn gợi ý</li>
+                <li><i class="bi bi-search-heart-fill"></i> Tìm kiếm và lọc món ăn theo danh mục</li>
+                <li><i class="bi bi-card-text"></i> Xem chi tiết món ăn, đánh giá và tùy chọn</li>
+                <li><i class="bi bi-cart-fill"></i> Giỏ hàng thông minh, dễ chỉnh sửa số lượng</li>
+                <li><i class="bi bi-credit-card-2-front-fill"></i> Thanh toán đa phương thức, theo dõi đơn hàng real-time</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Luồng người dùng -->
+          <div class="col-md-6">
+            <div class="info-card h-100">
+              <h3 class="section-title"><i class="bi bi-arrow-repeat me-2"></i> Luồng người dùng</h3>
+              <p class="text-secondary fw-semibold">Mở ứng dụng → Đăng nhập → Trang chủ → Chọn món → Thêm vào giỏ → Thanh toán → Theo dõi đơn hàng</p>
+              <p class="text-secondary mt-2 mb-0">— Mọi thao tác đều được tinh chỉnh để đạt hiệu suất tối đa với số bước tối thiểu, tối ưu trải nghiệm di động.</p>
+            </div>
+          </div>
+
+          <!-- Thiết kế UI/UX -->
+          <div class="col-12">
+            <div class="info-card">
+              <h3 class="section-title"><i class="bi bi-brush me-2"></i> Thiết kế giao diện & UI/UX</h3>
+              <div class="row">
+                <div class="col-md-6">
+                  <ul class="feature-list">
+                    <li><i class="bi bi-phone"></i> Giao diện tối giản, hiện đại, xu hướng 2025</li>
+                    <li><i class="bi bi-grid-3x3-gap-fill"></i> Bố cục rõ ràng: tiêu đề – nội dung – điều hướng F-pattern</li>
+                    <li><i class="bi bi-hand-index-thumb-fill"></i> Nút bấm lớn, tối ưu vùng chạm trên mobile</li>
+                  </ul>
+                </div>
+                <div class="col-md-6">
+                  <ul class="feature-list">
+                    <li><i class="bi bi-type"></i> Typography rõ ràng với font Inter, spacing hợp lý</li>
+                    <li><i class="bi bi-palette-fill"></i> Màu sắc nhất quán: cam ấm áp chủ đạo, tập trung CTA</li>
+                    <li><i class="bi bi-magic"></i> Micro-interactions & smart animation prototype</li>
+                  </ul>
+                </div>
               </div>
             </div>
-            <div class="project-details__links">
-              <h3 class="project-details__content-title">See Live</h3>
-              <a
-                href="#"
-                class="btn btn--med btn--theme project-details__links-btn"
-                target="_blank"
-                >Live Link</a
-              >
-              <a
-                href="#"
-                class="btn btn--med btn--theme-inv project-details__links-btn"
-                target="_blank"
-                >Code Link</a
-              >
+          </div>
+
+          <!-- Công cụ sử dụng (skills) -->
+          <div class="col-12">
+            <div class="info-card">
+              <h3 class="section-title"><i class="bi bi-tools me-2"></i> Công cụ sử dụng</h3>
+              <div class="d-flex flex-wrap gap-2 mt-2">
+                <span class="skill-tag"><i class="bi bi-figma me-1"></i> Figma</span>
+                <span class="skill-tag"><i class="bi bi-layout-three-columns me-1"></i> Auto Layout & Components</span>
+                <span class="skill-tag"><i class="bi bi-cpu me-1"></i> Smart Animate</span>
+                <span class="skill-tag"><i class="bi bi-diagram-3 me-1"></i> User Flow Mapping</span>
+                <span class="skill-tag"><i class="bi bi-pencil-square me-1"></i> Wireframing & High-fidelity</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Link Xem Figma -->
+          <div class="col-12 text-center mt-4">
+            <div class="info-card d-inline-block w-auto mx-auto" style="background: transparent; box-shadow: none; border: none;">
+              <h3 class="section-title" style="text-align:center;"><i class="bi bi-rocket-takeoff-fill me-2"></i> Xem dự án trên Figma</h3>
+              <a href="https://www.figma.com/design/fNqHlXTE24477HqQKE99eH/Food-ordering-app--Ho-Van-Tiet-?m=auto&t=EDQkh37XDP1oo2ZO-1" class="btn-outline-dark-custom mt-2" target="_blank" rel="noopener">
+                <i class="bi bi-figma fs-5"></i> Mở trong Figma
+              </a>
             </div>
           </div>
         </div>
       </div>
     </section>
+
+    <!-- Footer với Bootstrap Icons -->
     <footer class="main-footer">
       <div class="main-container">
-        <div class="main-footer__upper">
-          <div class="main-footer__row main-footer__row-1">
-            <h2 class="heading heading-sm main-footer__heading-sm">
-              <span>Social</span>
-            </h2>
-            <div class="main-footer__social-cont">
-              <a target="_blank" rel="noreferrer" href="#">
-                <img
-                  class="main-footer__icon"
-                  src="./assets/png/linkedin-ico.png"
-                  alt="icon"
-                />
-              </a>
-              <a target="_blank" rel="noreferrer" href="#">
-                <img
-                  class="main-footer__icon"
-                  src="./assets/png/github-ico.png"
-                  alt="icon"
-                />
-              </a>
-              <a target="_blank" rel="noreferrer" href="#">
-                <img
-                  class="main-footer__icon"
-                  src="./assets/png/twitter-ico.png"
-                  alt="icon"
-                />
-              </a>
-              <a target="_blank" rel="noreferrer" href="#">
-                <img
-                  class="main-footer__icon"
-                  src="./assets/png/yt-ico.png"
-                  alt="icon"
-                />
-              </a>
-              <a target="_blank" rel="noreferrer" href="#">
-                <img
-                  class="main-footer__icon main-footer__icon--mr-none"
-                  src="./assets/png/insta-ico.png"
-                  alt="icon"
-                />
-              </a>
+        <div class="row gy-4">
+          <div class="col-md-6">
+            <h5 class="fw-semibold mb-3"><i class="bi bi-globe2 me-2"></i> Kết nối</h5>
+            <div class="d-flex gap-3">
+              <a href="https://www.linkedin.com/in/ho-van-tiet-544132343/" target="_blank" class="footer-icon"><i class="bi bi-linkedin"></i></a>
+              <a href="https://github.com/vti0209" target="_blank" class="footer-icon"><i class="bi bi-github"></i></a>
+              <a href="#" target="_blank" class="footer-icon"><i class="bi bi-twitter-x"></i></a>
+              <a href="#" target="_blank" class="footer-icon"><i class="bi bi-youtube"></i></a>
+              <a href="#" target="_blank" class="footer-icon"><i class="bi bi-instagram"></i></a>
             </div>
           </div>
-          <div class="main-footer__row main-footer__row-2">
-            <h4 class="heading heading-sm text-lt">John Doe</h4>
-            <p class="main-footer__short-desc">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit facilis
-              tempora explicabo quae quod deserunt
-            </p>
+          <div class="col-md-6">
+            <h5 class="fw-semibold mb-3">Hồ Văn Tiết</h5>
+            <p class="small text-secondary mb-1"><i class="bi bi-geo-alt-fill me-2"></i> Đà Nẵng, Việt Nam</p>
+            <p class="small text-secondary mb-1"><i class="bi bi-telephone-fill me-2"></i> +84 373 532 152</p>
+            <p class="small text-secondary mb-0"><i class="bi bi-envelope-fill me-2"></i> tiet.ho27@student.passerellesnumeriques.org</p>
           </div>
         </div>
-
-        <div class="main-footer__lower">
-          &copy; Copyright 2021. Made by
-          <a rel="noreferrer" target="_blank" href="https://rammaheshwari.com"
-            >Ram Maheshwari</a
-          >
+        <hr class="my-4 bg-secondary" style="opacity: 0.2;">
+        <div class="text-center small text-secondary">
+          <p class="mb-2">Bản quyền © 2026 <strong class="text-white-50">VanwTiet</strong> | Information Technology Student<br>Built with <i class="bi bi-suit-heart-fill text-danger"></i> using Bootstrap 5, HTML, CSS & JavaScript — Giao diện hiện đại, tối ưu UX</p>
+          <p>
+            <a href="https://github.com/vti0209" class="footer-link-light" target="_blank"><i class="bi bi-github me-1"></i>GitHub</a> |
+            <a href="https://www.linkedin.com/in/ho-van-tiet-544132343/" class="footer-link-light" target="_blank"><i class="bi bi-linkedin me-1"></i>LinkedIn</a> |
+            <a href="mailto:tiet.ho27@student.passerellesnumeriques.org" class="footer-link-light"><i class="bi bi-envelope me-1"></i>Email</a>
+          </p>
         </div>
       </div>
     </footer>
-    <script src="./index.js"></script>
+
+    <!-- Bootstrap JS Bundle (bao gồm Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom script để đóng mobile menu khi click link và smooth scroll -->
+    <script>
+      // Đóng Bootstrap collapse khi click vào link mobile
+      const mobileMenuCollapse = document.getElementById('mobileMenu');
+      const mobileLinks = document.querySelectorAll('#mobileMenu .nav-link');
+      if (mobileMenuCollapse) {
+        mobileLinks.forEach(link => {
+          link.addEventListener('click', () => {
+            const bsCollapse = bootstrap.Collapse.getInstance(mobileMenuCollapse);
+            if (bsCollapse) bsCollapse.hide();
+          });
+        });
+      }
+
+      // Smooth scroll cho anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          const hash = this.getAttribute('href');
+          if(hash !== "#" && hash !== "" && hash !== "#!" && hash.startsWith('#') && hash.length > 1) {
+            const target = document.querySelector(hash);
+            if(target) {
+              e.preventDefault();
+              target.scrollIntoView({ behavior: 'smooth' });
+            }
+          }
+        });
+      });
+    </script>
   </body>
 </html>
